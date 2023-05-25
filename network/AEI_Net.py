@@ -9,6 +9,8 @@ def weight_init(m):
         m.weight.data.normal_(0, 0.001)
         m.bias.data.zero_()
     if isinstance(m, nn.Conv2d):
+        #La inicialización Xavier Normal se basa en la idea de 
+        #que los pesos deben estar inicializados de manera que las salidas de las capas no se amplifiquen demasiado ni se reduzcan demasiado.
         nn.init.xavier_normal_(m.weight.data)
 
     if isinstance(m, nn.ConvTranspose2d):

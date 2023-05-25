@@ -10,10 +10,13 @@ class AADLayer(nn.Module):
         self.c_x = c_x
 
         self.conv1 = nn.Conv2d(attr_c, c_x, kernel_size=1, stride=1, padding=0, bias=True)
-        #una convolución 2D a un tensor de entrada con cin canales de entrada y produce un tensor de salida con cout canales de salida
+        #una convolución 2D a un tensor de entrada con cin canales de entrada 
+        #y produce un tensor de salida con cout canales de salida
         self.conv2 = nn.Conv2d(attr_c, c_x, kernel_size=1, stride=1, padding=0, bias=True)
+        # define una capa lineal que toma un tensor de entrada de tamaño c_id y produce un tensor de salida de tamaño c_x
         self.fc1 = nn.Linear(c_id, c_x)
         self.fc2 = nn.Linear(c_id, c_x)
+        #define una capa de normalización de instancia que normaliza los valores de cada canal de un tensor de entrada de manera independiente
         self.norm = nn.InstanceNorm2d(c_x, affine=False)
 
         self.conv_h = nn.Conv2d(c_x, 1, kernel_size=1, stride=1, padding=0, bias=True)
